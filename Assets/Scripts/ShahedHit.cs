@@ -9,13 +9,13 @@ public class ShahedHit : MonoBehaviour
 
     [SerializeField] private GameObject shahedExplosion;
     [SerializeField] private GameObject shahedFractured;
-    [SerializeField] private GameController gameController;
+    private GameController gameController;
 
     private bool IsDestroyed = false;
 
     private void Awake()
     {
-        gameController = FindObjectOfType<GameController>();
+        gameController = GameController.Instance;
     }
 
     public void ShahedDestroyed()
