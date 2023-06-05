@@ -11,11 +11,11 @@ public class ShahedMovement : MonoBehaviour, ICloneable
 
     [Header("Target to aim at")]
     public GameObject target;
-    [SerializeField] private GameController gameController;
+    private GameController gameController;
 
     private void Awake()
     {
-        gameController = FindObjectOfType<GameController>();
+        gameController = GameController.Instance;
     }
 
     // Start is called before the first frame update
