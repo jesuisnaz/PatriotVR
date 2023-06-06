@@ -2196,9 +2196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d5292b573529453084d2660c6d6edbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shahedExplosion: {fileID: 3204236240185292230, guid: 5e4407dd8f2194aec99d8790072560c2,
+  enemyExplosion: {fileID: 3204236240185292230, guid: 5e4407dd8f2194aec99d8790072560c2,
     type: 3}
-  shahedFractured: {fileID: 7599186397937147904, guid: e235ac391db0e4e30947ba56a1065125,
+  enemyFractured: {fileID: 7599186397937147904, guid: e235ac391db0e4e30947ba56a1065125,
     type: 3}
 --- !u!65 &5554911286322924562
 BoxCollider:

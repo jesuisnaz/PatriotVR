@@ -123,6 +123,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &33941296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 33941298}
+  - component: {fileID: 33941297}
+  m_Layer: 0
+  m_Name: FighterJetTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &33941297
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33941296}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &33941298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33941296}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 40, z: 0}
+  m_LocalScale: {x: 18.583, y: 1, z: 33.98363}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
@@ -2271,7 +2316,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0.0012686551, w: 0.0011925697}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1533502722
@@ -2776,7 +2821,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &1980075834
 GameObject:
   m_ObjectHideFlags: 0
@@ -3092,7 +3137,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &2044897638
 GameObject:
   m_ObjectHideFlags: 0
@@ -3244,7 +3289,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2103516296
 GameObject:
@@ -3529,6 +3574,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8085056238782488182, guid: d1c839b316fe0440c91e74a494149fb7,
         type: 3}
+    - target: {fileID: 5259565214533210345, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: shahedPrototype
+      value: 
+      objectReference: {fileID: 8085056238782488182, guid: d1c839b316fe0440c91e74a494149fb7,
+        type: 3}
+    - target: {fileID: 5259565214533210345, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: slowEnemyFactory
+      value: 
+      objectReference: {fileID: -3879677835614802965, guid: 7c92df55e68a143c68200e2fcf545014,
+        type: 3}
+    - target: {fileID: 5259565214533210345, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: defaultEnemyFactory
+      value: 
+      objectReference: {fileID: 4870010969957154756, guid: bea8788b19296400680b6dfbb069044d,
+        type: 3}
+    - target: {fileID: 5259565214533210345, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: fighterJetPrototype
+      value: 
+      objectReference: {fileID: 5748347468290694640, guid: d3eb49bf4b2a74d5cb8b1e8cf0679b29,
+        type: 3}
+    - target: {fileID: 5259565214533210345, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: nonDefaultEnemyFactory
+      value: 
+      objectReference: {fileID: 4870010969957154756, guid: bea8788b19296400680b6dfbb069044d,
+        type: 3}
+    - target: {fileID: 5259565215630869498, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: fighterSpawnRate
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5259565215630869500, guid: ca04c3b8b7f6446d2b4113205abaee65,
         type: 3}
       propertyPath: m_Name
@@ -3595,7 +3675,73 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8085056238782488182, guid: d1c839b316fe0440c91e74a494149fb7,
         type: 3}
+    - target: {fileID: 7993003141734820497, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: shahedPrototype
+      value: 
+      objectReference: {fileID: 8085056238782488182, guid: d1c839b316fe0440c91e74a494149fb7,
+        type: 3}
+    - target: {fileID: 7993003141734820497, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: slowEnemyFactory
+      value: 
+      objectReference: {fileID: -3879677835614802965, guid: 7c92df55e68a143c68200e2fcf545014,
+        type: 3}
+    - target: {fileID: 7993003141734820497, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: defaultEnemyFactory
+      value: 
+      objectReference: {fileID: 4870010969957154756, guid: bea8788b19296400680b6dfbb069044d,
+        type: 3}
+    - target: {fileID: 7993003141734820497, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: fighterJetPrototype
+      value: 
+      objectReference: {fileID: 5748347468290694640, guid: d3eb49bf4b2a74d5cb8b1e8cf0679b29,
+        type: 3}
+    - target: {fileID: 7993003141734820497, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: nonDefaultEnemyFactory
+      value: 
+      objectReference: {fileID: 4870010969957154756, guid: bea8788b19296400680b6dfbb069044d,
+        type: 3}
     - target: {fileID: 7993003141773813170, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: enemyPrototype
+      value: 
+      objectReference: {fileID: 8085056238782488182, guid: d1c839b316fe0440c91e74a494149fb7,
+        type: 3}
+    - target: {fileID: 7993003141773813170, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: shahedPrototype
+      value: 
+      objectReference: {fileID: 8085056238782488182, guid: d1c839b316fe0440c91e74a494149fb7,
+        type: 3}
+    - target: {fileID: 7993003141773813170, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: slowEnemyFactory
+      value: 
+      objectReference: {fileID: -3879677835614802965, guid: 7c92df55e68a143c68200e2fcf545014,
+        type: 3}
+    - target: {fileID: 7993003141773813170, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: defaultEnemyFactory
+      value: 
+      objectReference: {fileID: 4870010969957154756, guid: bea8788b19296400680b6dfbb069044d,
+        type: 3}
+    - target: {fileID: 7993003141773813170, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: fighterJetPrototype
+      value: 
+      objectReference: {fileID: 5748347468290694640, guid: d3eb49bf4b2a74d5cb8b1e8cf0679b29,
+        type: 3}
+    - target: {fileID: 7993003141773813170, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: nonDefaultEnemyFactory
+      value: 
+      objectReference: {fileID: 4870010969957154756, guid: bea8788b19296400680b6dfbb069044d,
+        type: 3}
+    - target: {fileID: 7993003142193321709, guid: ca04c3b8b7f6446d2b4113205abaee65,
         type: 3}
       propertyPath: enemyPrototype
       value: 
@@ -3603,9 +3749,33 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 7993003142193321709, guid: ca04c3b8b7f6446d2b4113205abaee65,
         type: 3}
-      propertyPath: enemyPrototype
+      propertyPath: shahedPrototype
       value: 
       objectReference: {fileID: 8085056238782488182, guid: d1c839b316fe0440c91e74a494149fb7,
+        type: 3}
+    - target: {fileID: 7993003142193321709, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: slowEnemyFactory
+      value: 
+      objectReference: {fileID: -3879677835614802965, guid: 7c92df55e68a143c68200e2fcf545014,
+        type: 3}
+    - target: {fileID: 7993003142193321709, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: defaultEnemyFactory
+      value: 
+      objectReference: {fileID: 4870010969957154756, guid: bea8788b19296400680b6dfbb069044d,
+        type: 3}
+    - target: {fileID: 7993003142193321709, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: fighterJetPrototype
+      value: 
+      objectReference: {fileID: 5748347468290694640, guid: d3eb49bf4b2a74d5cb8b1e8cf0679b29,
+        type: 3}
+    - target: {fileID: 7993003142193321709, guid: ca04c3b8b7f6446d2b4113205abaee65,
+        type: 3}
+      propertyPath: nonDefaultEnemyFactory
+      value: 
+      objectReference: {fileID: 4870010969957154756, guid: bea8788b19296400680b6dfbb069044d,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca04c3b8b7f6446d2b4113205abaee65, type: 3}
@@ -3641,7 +3811,7 @@ PrefabInstance:
     - target: {fileID: 7856032188783486469, guid: 48cfa4d42ff604bbabd1321ee48c19e0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7856032188783486469, guid: 48cfa4d42ff604bbabd1321ee48c19e0,
         type: 3}

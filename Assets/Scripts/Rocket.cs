@@ -20,14 +20,12 @@ public class Rocket : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Shot something: ");
-        if (collision.gameObject.GetComponent<ShahedHit>() != null)
+        if (collision.gameObject.GetComponent<EnemyHit>() != null)
         {
-            collision.gameObject.GetComponent<ShahedHit>().ShahedDestroyed();
+            collision.gameObject.GetComponent<EnemyHit>().EnemyDestroyed();
         }
         else if (collision.gameObject.GetComponent<IShootable>() != null)
         {
-            Debug.Log("Shot IShootable");
             collision.gameObject.GetComponent<IShootable>().OnHit();
         }
 
