@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 
     public static GameController Instance { get; private set; }
 
-    [SerializeField] private GlobalShahedSpawner globalEnemySpawner;
+    [SerializeField] private GlobalEnemySpawner globalEnemySpawner;
 
     [Header("Score text on display")]
     [SerializeField] private TMP_Text scoreText;
@@ -82,18 +82,18 @@ public class GameController : MonoBehaviour
         globalEnemySpawner.EnableSpawners(true);
     }
 
-    internal void HandleEnemyDestroyed(ShahedHit shahedHit)
+    internal void HandleEnemyDestroyed(EnemyHit enemyHit)
     {
         globalEnemySpawner.ReduceSpawnRate();
 
-        float distanceFromPlayer = Vector3.Distance(shahedHit.transform.position, Vector3.zero);
-        int bonusScore = (int)(10 * distanceFromPlayer);
+        float distanceFromPlayer = Vector3.Distance(enemyHit.transform.position, Vector3.zero);
+        int bonusScore = (int)(enemyHit.scoreMultiplier * distanceFromPlayer);
         playerScore += bonusScore;
         scoreText.text = "" + playerScore;
-        SpawnScorePopup(shahedHit, distanceFromPlayer, bonusScore);
+        SpawnScorePopup(enemyHit, distanceFromPlayer, bonusScore);
     }
 
-    private void SpawnScorePopup(ShahedHit shahedHit, float distanceFromPlayer, int bonusScore)
+    private void SpawnScorePopup(EnemyHit shahedHit, float distanceFromPlayer, int bonusScore)
     {
         scorePopupCanvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = bonusScore.ToString();
         GameObject popUp = Instantiate(

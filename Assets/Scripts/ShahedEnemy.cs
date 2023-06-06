@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShahedMovement : MonoBehaviour, ICloneable
+public class ShahedEnemy : MonoBehaviour, ICloneable
 {
 
     [Header("Shahed's speed")]
@@ -28,17 +28,22 @@ public class ShahedMovement : MonoBehaviour, ICloneable
     {
         while (Vector3.Distance(target.transform.position, shahed.transform.position) > 0.3f)
         {
-            shahed.transform.position += (target.transform.position - shahed.transform.position).normalized * speed * Time.deltaTime;
+            shahed.transform.position += MovePerTime(shahed);
             shahed.transform.LookAt(target.transform);
             yield return null;
         }
-        this.GetComponent<ShahedHit>().ShahedDestroyed();
+        this.GetComponent<EnemyHit>().EnemyDestroyed();
         gameController.GameOver();
     }
 
+    internal virtual Vector3 MovePerTime(GameObject shahed)
+    {
+        return (target.transform.position - shahed.transform.position).normalized * speed * Time.deltaTime;
+    }
+
+
     public GameObject clone(Vector3 position, Quaternion rotation)
     {
-        GameObject gameObject = Instantiate(this.gameObject, position, rotation);
-        return gameObject;
+        return Instantiate(this.gameObject, position, rotation);
     }
 }

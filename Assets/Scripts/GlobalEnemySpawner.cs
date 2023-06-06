@@ -3,23 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class GlobalShahedSpawner : MonoBehaviour
+public class GlobalEnemySpawner : MonoBehaviour
 {
-    [Header("Spawn rate")]
-    public float spawnRate = 10f;
+    [Header("Shahed spawn rate")]
+    public float shahedSpawnRate = 10f;
+    [Header("Fighet Jet spawn chance")]
+    public float fighterSpawnChance = 0.3f;
 
     [SerializeField] private float MIN_SPAWN_RATE = 2f;
     [SerializeField] private float SPAWN_RATE_STEP = 0.1f;
 
     private float spawnTimer = 0f;
-    private ShahedSpawner[] spawners;
+    private EnemySpawner[] spawners;
     private bool spawnersEnabled = false;
 
 
     // Start is called before the first frame update
     private void Awake()
     {
-        spawners = transform.GetComponentsInChildren<ShahedSpawner>();
+        spawners = transform.GetComponentsInChildren<EnemySpawner>();
     }
 
     // Update is called once per frame
@@ -28,23 +30,28 @@ public class GlobalShahedSpawner : MonoBehaviour
         if (!spawnersEnabled) return;
         spawnTimer += Time.deltaTime;
 
-        if (spawnTimer > spawnRate)
+        if (spawnTimer > shahedSpawnRate)
         {
             int spawnerIndex = Random.Range(0, spawners.Length);
             spawners[spawnerIndex].SpawnShahed();
             Debug.Log("Shahed spawned in spawner idx " + spawnerIndex);
             spawnTimer = 0f;
+            if (Random.Range(0f, 1f) <= fighterSpawnChance)
+            {
+                spawnerIndex = Random.Range(0, spawners.Length);
+                spawners[spawnerIndex].SpawnFighterJet();
+            }
         }
     }
 
     internal void EnableSpawners(bool en)
     {
         spawnersEnabled = en;
-        spawnRate = 10f;
+        shahedSpawnRate = 10f;
         spawnTimer = 0f;
         if (!en)
         {
-            foreach (ShahedHit obj in FindObjectsOfType<ShahedHit>())
+            foreach (EnemyHit obj in FindObjectsOfType<EnemyHit>())
             {
                 obj.Explode();
             }
@@ -54,7 +61,7 @@ public class GlobalShahedSpawner : MonoBehaviour
     public void ReduceSpawnRate()
     {
         if (!spawnersEnabled) return;
-        if (spawnRate > MIN_SPAWN_RATE) spawnRate -= SPAWN_RATE_STEP;
-        if (spawnRate < MIN_SPAWN_RATE) spawnRate = MIN_SPAWN_RATE;
+        if (shahedSpawnRate > MIN_SPAWN_RATE) shahedSpawnRate -= SPAWN_RATE_STEP;
+        if (shahedSpawnRate < MIN_SPAWN_RATE) shahedSpawnRate = MIN_SPAWN_RATE;
     }
 }

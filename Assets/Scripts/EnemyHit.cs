@@ -4,21 +4,22 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ShahedHit : MonoBehaviour
+public class EnemyHit : MonoBehaviour
 {
 
-    [SerializeField] private GameObject shahedExplosion;
-    [SerializeField] private GameObject shahedFractured;
+    [SerializeField] private GameObject enemyExplosion;
+    [SerializeField] private GameObject enemyFractured;
+    [SerializeField] internal float scoreMultiplier = 10f;
     private GameController gameController;
 
     private bool IsDestroyed = false;
 
-    private void Awake()
+    private void Start()
     {
         gameController = GameController.Instance;
     }
 
-    public void ShahedDestroyed()
+    public void EnemyDestroyed()
     {
         if (IsDestroyed)
         {
@@ -32,9 +33,9 @@ public class ShahedHit : MonoBehaviour
 
     public void Explode()
     {
-        Instantiate(shahedExplosion, transform.position, transform.rotation);
+        Instantiate(enemyExplosion, transform.position, transform.rotation);
         this.gameObject.SetActive(false);
-        GameObject fractured = Instantiate(shahedFractured, this.transform.position, this.transform.rotation);
+        GameObject fractured = Instantiate(enemyFractured, this.transform.position, this.transform.rotation);
         Destroy(this.gameObject);
         PushObjectsCloseToExplosion(fractured);
     }
