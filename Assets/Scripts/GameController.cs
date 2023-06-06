@@ -74,14 +74,6 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void RestartGame()
-    {
-        playerScore = 0;
-        scoreText.text = "" + playerScore;
-        currentGameState = GameState.PLAYING;
-        globalEnemySpawner.EnableSpawners(true);
-    }
-
     internal void HandleEnemyDestroyed(EnemyHit enemyHit)
     {
         globalEnemySpawner.ReduceSpawnRate();
