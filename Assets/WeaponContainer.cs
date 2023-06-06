@@ -6,15 +6,18 @@ using UnityEngine;
 
 public class WeaponContainer : MonoBehaviour
 {
-    [SerializeField] public IWeapon weapon;
+    [SerializeField] private GameObject weaponHolder;
     [SerializeField] private GameObject extraShotDecoratorObject;
     [SerializeField] private GameObject extraAmmoDecoratorObject;
     [SerializeField] private TMP_Text ammoCountText;
+
+    private IWeapon weapon;
     private Boolean hasExtraShot = false;
     private Boolean hasExtraAmmo = false;
 
     private void Awake()
     {
+        weapon = weaponHolder.GetComponent<IWeapon>();
         Debug.Log("Setting RocketLauncer as an initial weapon");
         weapon = GetComponent<RocketLauncher>();
     }
