@@ -5,11 +5,11 @@ using UnityEngine;
 public class ReloadTrigger : MonoBehaviour
 {
 
-    [SerializeField] private RocketLauncher rocketLauncher;
+    [SerializeField] private WeaponContainer weaponContainer;
 
     private void Awake()
     {
-        rocketLauncher = GetComponentInParent<RocketLauncher>();
+        weaponContainer = GetComponentInParent<WeaponContainer>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -17,7 +17,7 @@ public class ReloadTrigger : MonoBehaviour
         IAmmo ammo = other.gameObject.GetComponent<IAmmo>();
         if (ammo != null)
         {
-            rocketLauncher.LoadAmmo(ammo);
+            weaponContainer.LoadAmmo(ammo);
             Destroy(other.gameObject);
         }
     }

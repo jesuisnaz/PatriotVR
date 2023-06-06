@@ -23,6 +23,8 @@ public class GameController : MonoBehaviour
     [Header("HighScore text on display")]
     [SerializeField] private TMP_Text highScoreText;
 
+    [SerializeField] private WeaponContainer weaponContainer;
+
     public enum GameState
     {
         WAITING,
@@ -82,21 +84,49 @@ public class GameController : MonoBehaviour
         int bonusScore = (int)(enemyHit.scoreMultiplier * distanceFromPlayer);
         playerScore += bonusScore;
         scoreText.text = "" + playerScore;
+        if (playerScore > 2000 && !weaponContainer.HasExtraAmmo())
+        {
+            Debug.Log("Adding extra ammo feature");
+            weaponContainer.AddExtraAmmoFeature();
+            SpawnTextPopup(enemyHit, distanceFromPlayer, "+25% Extra Ammo Chance");
+        }
+        if (playerScore > 4000 && !weaponContainer.HasExtraShot())
+        {
+            Debug.Log("Adding extra shot feature");
+            weaponContainer.AddExtraShotFeature();
+            SpawnTextPopup(enemyHit, distanceFromPlayer, "+25% Extra 3 Shots Chance");
+        }
         SpawnScorePopup(enemyHit, distanceFromPlayer, bonusScore);
+
     }
 
-    private void SpawnScorePopup(EnemyHit shahedHit, float distanceFromPlayer, int bonusScore)
+    private void SpawnTextPopup(EnemyHit enemyHit, float distanceFromPlayer, string text)
+    {
+        scorePopupCanvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = text;
+        GameObject popUp = Instantiate(
+            scorePopupCanvas,
+            new Vector3(enemyHit.transform.position.x, enemyHit.transform.position.y + 5, enemyHit.transform.position.z + 5f),
+            Quaternion.identity
+        );
+        popUp.transform.localScale = new Vector3(
+            enemyHit.transform.localScale.x * distanceFromPlayer / 10,
+            enemyHit.transform.localScale.y * distanceFromPlayer / 10,
+            enemyHit.transform.localScale.z * distanceFromPlayer / 10
+        );
+    }
+
+    private void SpawnScorePopup(EnemyHit enemyHit, float distanceFromPlayer, int bonusScore)
     {
         scorePopupCanvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = bonusScore.ToString();
         GameObject popUp = Instantiate(
             scorePopupCanvas,
-            new Vector3(shahedHit.transform.position.x, shahedHit.transform.position.y, shahedHit.transform.position.z + 5f),
+            new Vector3(enemyHit.transform.position.x, enemyHit.transform.position.y, enemyHit.transform.position.z + 5f),
             Quaternion.identity
-        ) ;
+        );
         popUp.transform.localScale = new Vector3(
-            shahedHit.transform.localScale.x * distanceFromPlayer / 10,
-            shahedHit.transform.localScale.y * distanceFromPlayer / 10,
-            shahedHit.transform.localScale.z * distanceFromPlayer / 10
+            enemyHit.transform.localScale.x * distanceFromPlayer / 10,
+            enemyHit.transform.localScale.y * distanceFromPlayer / 10,
+            enemyHit.transform.localScale.z * distanceFromPlayer / 10
         );
     }
 }

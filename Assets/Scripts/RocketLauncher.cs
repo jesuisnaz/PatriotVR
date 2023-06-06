@@ -3,15 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketLauncher : MonoBehaviour
+public class RocketLauncher : MonoBehaviour, IWeapon
 {
     [SerializeField] private Transform rocketCastOrigin;
     [SerializeField] private GameObject rocket;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip shotFailedSound;
     [SerializeField] private AudioClip reloadSound;
-    [SerializeField] private AmmoSpawner ammoSpawner;
+    private AmmoSpawner ammoSpawner;
     public int loadedAmmoCount = 0;
+    private bool isShooting = false;
 
     private void Awake()
     {
@@ -20,6 +21,8 @@ public class RocketLauncher : MonoBehaviour
 
     public void Fire()
     {
+        if (isShooting) return;
+        isShooting = true;
         if (loadedAmmoCount > 0)
         {
             Instantiate(rocket, rocketCastOrigin.transform.position, rocketCastOrigin.transform.rotation);
@@ -33,19 +36,17 @@ public class RocketLauncher : MonoBehaviour
         {
             audioSource.PlayOneShot(shotFailedSound);
         }
+        isShooting = false;
     }
 
-    public void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Fire();
-        }
-    }
-
-    internal void LoadAmmo(IAmmo ammo)
+    public void LoadAmmo(IAmmo ammo)
     {
         loadedAmmoCount += ammo.ammoCount;
         audioSource.PlayOneShot(reloadSound);
+    }
+
+    public int AmmoCount()
+    {
+        return loadedAmmoCount;
     }
 }
