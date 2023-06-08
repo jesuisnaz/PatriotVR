@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GameController;
 
-public class ShahedEnemy : MonoBehaviour, ICloneable
+public class ShahedEnemy : MonoBehaviour, IEventListener, ICloneable
 {
 
     [Header("Shahed's speed")]
@@ -11,12 +12,6 @@ public class ShahedEnemy : MonoBehaviour, ICloneable
 
     [Header("Target to aim at")]
     public GameObject target;
-    private GameController gameController;
-
-    private void Awake()
-    {
-        gameController = GameController.Instance;
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +28,8 @@ public class ShahedEnemy : MonoBehaviour, ICloneable
             yield return null;
         }
         this.GetComponent<EnemyHit>().EnemyDestroyed();
-        gameController.GameOver();
+        GameController.Instance.UnsubscribeFromEvents(GameState.GAME_OVER, this);
+        GameController.Instance.GameOver();
     }
 
     internal virtual Vector3 MovePerTime(GameObject shahed)
@@ -45,5 +41,17 @@ public class ShahedEnemy : MonoBehaviour, ICloneable
     public GameObject clone(Vector3 position, Quaternion rotation)
     {
         return Instantiate(this.gameObject, position, rotation);
+    }
+
+    public void Notify(GameState state)
+    {
+        if (this == null) return; 
+        Debug.Log("Shahed is notified");
+        if (state == GameState.GAME_OVER)
+        {
+            Debug.Log("Handling game over event in shahed");
+            GameController.Instance.UnsubscribeFromEvents(GameState.GAME_OVER, this);
+            GetComponent<EnemyHit>().Explode();
+        }
     }
 }

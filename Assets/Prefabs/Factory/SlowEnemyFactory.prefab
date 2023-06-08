@@ -48,3 +48,5 @@ MonoBehaviour:
     type: 3}
   shahedEnemy: {fileID: 8085056238782488182, guid: 03a5b1446bb3e4173aaf069480795cd3,
     type: 3}
+  gameStateEventManager: {fileID: 297888601576134612, guid: 49c0fe08187f946cc8c8215a3f745013,
+    type: 3}

@@ -17,9 +17,7 @@ public class WeaponContainer : MonoBehaviour
 
     private void Awake()
     {
-        weapon = weaponHolder.GetComponent<IWeapon>();
-        Debug.Log("Setting RocketLauncer as an initial weapon");
-        weapon = GetComponent<RocketLauncher>();
+        weapon = weaponHolder.GetComponent<RocketLauncherProxy>();
     }
 
     private void Update()

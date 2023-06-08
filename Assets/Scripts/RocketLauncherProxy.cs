@@ -21,6 +21,7 @@ public class RocketLauncherProxy : MonoBehaviour, IWeapon
 
     public void Fire()
     {
+        Debug.Log("ammo count: " + originalRocketLauncher.AmmoCount());
         if (originalRocketLauncher.AmmoCount() <= 0 || isShooting)
         {
             audioSource.PlayOneShot(shotFailedSound);
