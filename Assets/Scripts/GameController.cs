@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private TMP_Text highScoreText;
 
     [SerializeField] private WeaponContainer weaponContainer;
+    [SerializeField] private GameStateEventManager gameStateEventManager;
 
     public enum GameState
     {
@@ -37,6 +38,9 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        gameStateEventManager.Subscribe(GameState.PLAYING, globalEnemySpawner);
+        gameStateEventManager.Subscribe(GameState.WAITING, globalEnemySpawner);
+        gameStateEventManager.Subscribe(GameState.GAME_OVER, globalEnemySpawner);
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -46,7 +50,7 @@ public class GameController : MonoBehaviour
             Instance = this;
         }
 
-        currentGameState = GameState.WAITING;
+        UpdateGameState(GameState.WAITING);
         if (PlayerPrefs.HasKey("HighScore"))
         {
             int val = PlayerPrefs.GetInt("HighScore");
@@ -57,8 +61,7 @@ public class GameController : MonoBehaviour
 
     public void StartGame()
     {
-        currentGameState = GameState.PLAYING;
-        globalEnemySpawner.EnableSpawners(true);
+        UpdateGameState(GameState.PLAYING);
         playerScore = 0;
         scoreText.text = "" + playerScore;
     }
@@ -66,14 +69,19 @@ public class GameController : MonoBehaviour
     public void GameOver()
     {
         gameOverMenu.SetActive(true);
-        currentGameState = GameState.GAME_OVER;
-        globalEnemySpawner.EnableSpawners(false);
+        UpdateGameState(GameState.GAME_OVER);
         if (playerScore > highScore)
         {
             PlayerPrefs.SetInt("HighScore", playerScore);
             highScore = playerScore;
             highScoreText.text = "" + highScore;
         }
+    }
+
+    private void UpdateGameState(GameState state)
+    {
+        currentGameState = state;
+        gameStateEventManager.Notify(currentGameState);
     }
 
     internal void HandleEnemyDestroyed(EnemyHit enemyHit)
@@ -128,5 +136,10 @@ public class GameController : MonoBehaviour
             enemyHit.transform.localScale.y * distanceFromPlayer / 10,
             enemyHit.transform.localScale.z * distanceFromPlayer / 10
         );
+    }
+
+    internal void UnsubscribeFromEvents(GameState eventType, IEventListener shahedEnemy)
+    {
+        gameStateEventManager.Unsubscribe(eventType, shahedEnemy);
     }
 }

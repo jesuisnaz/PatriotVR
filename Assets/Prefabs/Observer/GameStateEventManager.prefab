@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4870010969957154759
+--- !u!1 &297888601576134603
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,45 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4870010969957154757}
-  - component: {fileID: 4870010969957154756}
+  - component: {fileID: 297888601576134614}
+  - component: {fileID: 297888601576134612}
   m_Layer: 0
-  m_Name: DefaultEnemyFactory
+  m_Name: GameStateEventManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4870010969957154757
+--- !u!4 &297888601576134614
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4870010969957154759}
+  m_GameObject: {fileID: 297888601576134603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5107339, y: 1.1256213, z: 0.6194072}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4870010969957154756
+--- !u!114 &297888601576134612
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4870010969957154759}
+  m_GameObject: {fileID: 297888601576134603}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42aa0c2624bad43c79519b66c8a41afe, type: 3}
+  m_Script: {fileID: 11500000, guid: 28192d4fde0a04fc7bd640da4279177e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fighterEnemy: {fileID: 5748347468290694640, guid: d3eb49bf4b2a74d5cb8b1e8cf0679b29,
-    type: 3}
-  shahedEnemy: {fileID: 8085056238782488182, guid: d1c839b316fe0440c91e74a494149fb7,
-    type: 3}
-  gameStateEventManager: {fileID: 297888601576134612, guid: 49c0fe08187f946cc8c8215a3f745013,
-    type: 3}

@@ -10,14 +10,7 @@ public class EnemyHit : MonoBehaviour
     [SerializeField] private GameObject enemyExplosion;
     [SerializeField] private GameObject enemyFractured;
     [SerializeField] internal float scoreMultiplier = 10f;
-    private GameController gameController;
-
     private bool IsDestroyed = false;
-
-    private void Start()
-    {
-        gameController = GameController.Instance;
-    }
 
     public void EnemyDestroyed()
     {
@@ -28,7 +21,7 @@ public class EnemyHit : MonoBehaviour
 
         IsDestroyed = true;
         Explode();
-        gameController.HandleEnemyDestroyed(this);
+        GameController.Instance.HandleEnemyDestroyed(this);
     }
 
     public void Explode()

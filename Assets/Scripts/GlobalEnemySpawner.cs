@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class GlobalEnemySpawner : MonoBehaviour
+public class GlobalEnemySpawner : MonoBehaviour, IEventListener
 {
     [Header("Shahed spawn rate")]
     public float shahedSpawnRate = 10f;
@@ -44,24 +44,26 @@ public class GlobalEnemySpawner : MonoBehaviour
         }
     }
 
-    internal void EnableSpawners(bool en)
-    {
-        spawnersEnabled = en;
-        shahedSpawnRate = 10f;
-        spawnTimer = 0f;
-        if (!en)
-        {
-            foreach (EnemyHit obj in FindObjectsOfType<EnemyHit>())
-            {
-                obj.Explode();
-            }
-        }
-    }
-
     public void ReduceSpawnRate()
     {
         if (!spawnersEnabled) return;
         if (shahedSpawnRate > MIN_SPAWN_RATE) shahedSpawnRate -= SPAWN_RATE_STEP;
         if (shahedSpawnRate < MIN_SPAWN_RATE) shahedSpawnRate = MIN_SPAWN_RATE;
+    }
+
+    public void Notify(GameController.GameState state)
+    {
+        if (state == GameController.GameState.PLAYING)
+        {
+            spawnersEnabled = true;
+            shahedSpawnRate = 10f;
+            spawnTimer = 0f;
+        }
+        else if (state == GameController.GameState.GAME_OVER)
+        {
+            spawnersEnabled = false;
+            shahedSpawnRate = 10f;
+            spawnTimer = 0f;
+        }
     }
 }
